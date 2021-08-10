@@ -14,8 +14,7 @@ class Indications(Scene):
         # zip(radius, color) makes the iterator [(radius[i], color[i]) for i in range(radius)]
         circles_group.add(*[Circle(radius=rad, stroke_width=10, color=col)
                             for rad, col in zip(radius, colors)])
-        self.play(*[Create(Circle(radius=rad, stroke_width=10, color=col))
-                            for rad, col in zip(radius, colors)], run_time =5)
+        self.play(*[Create(Circle(radius=rad, stroke_width=10, color=RED)) for rad, col in zip(radius, colors)], *[Create(Circle(radius=rad+100, stroke_width=10, color=RED)) for rad, col in zip(radius, colors)], run_time =5)
         self.wait(5)
 
         # box = Group()

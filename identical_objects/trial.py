@@ -6,15 +6,27 @@ class Indications(Scene):
         # names = [Tex(i.__name__).scale(3) for i in indications]
        
 
-        box = Group()
-        integer1 =  Integer(number=1).move_to([0,0,0]).scale(0.75)
-        integer2 = Integer(number =2 ).move_to([1,0,0]).scale(0.75)
-        box.add(integer1)
-        box.add(integer2)
+        colors = [DARK_BROWN, BLUE_E, BLUE_D, BLUE_A, TEAL_B, GREEN_B, YELLOW_E]
+        radius = [1 + rad * 0.1 for rad in range(len(colors))]
 
-        # t = Text("hello there")
-        self.play(Indicate(box[0]), Indicate(box[1]))
-        self.wait(2)
+        circles_group = VGroup()
+
+        # zip(radius, color) makes the iterator [(radius[i], color[i]) for i in range(radius)]
+        circles_group.add(*[Circle(radius=rad, stroke_width=10, color=col)
+                            for rad, col in zip(radius, colors)])
+        self.play(*[Create(Circle(radius=rad, stroke_width=10, color=col))
+                            for rad, col in zip(radius, colors)], run_time =5)
+        self.wait(5)
+
+        # box = Group()
+        # integer1 =  Integer(number=1).move_to([0,0,0]).scale(0.75)
+        # integer2 = Integer(number =2 ).move_to([1,0,0]).scale(0.75)
+        # box.add(integer1)
+        # box.add(integer2)
+
+        # # t = Text("hello there")
+        # self.play(Indicate(box[0]), Indicate(box[1]))
+        # self.wait(2)
         # self.add(names[0])
         # for i in range(len(names)):
         #     if indications[i] is Flash:

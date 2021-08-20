@@ -1,25 +1,42 @@
 from manim import *
+import random
+
+def random_derangement(n):
+        while True:
+            v = [i for i in range(n)]
+            for j in range(n - 1, -1, -1):
+                p = random.randint(0, j)
+                if v[p] == j:
+                    break
+                else:
+                    v[j], v[p] = v[p], v[j]
+            else:
+                if v[0] != 0:
+                    return tuple(v)
 
 class Indications(Scene):
+
+
+
     def construct(self):
 
         
-        col1 = Text("Hello", color=RED).move_to([0,0,0]).scale(0.8)
-        emptytext1 = Text("?")
-        rect1 = Rectangle(width=2.0, height=1.0).move_to([0,0,0]).set_fill(GRAY, opacity=0.2).scale(0.8)
-        col2 = Text("World", color=BLUE).move_to([2,0,0]).scale(0.8)
-        rect2 = Rectangle(width=2.0, height=1.0).move_to([2,0,0]).set_fill(GRAY, opacity=0.2).scale(0.8)
-        emptytext2 = Text("?").move_to([2,0,0])
+        # col1 = Text("Hello", color=RED).move_to([0,0,0]).scale(0.8)
+        # emptytext1 = Text("?")
+        # rect1 = Rectangle(width=2.0, height=1.0).move_to([0,0,0]).set_fill(GRAY, opacity=0.2).scale(0.8)
+        # col2 = Text("World", color=BLUE).move_to([2,0,0]).scale(0.8)
+        # rect2 = Rectangle(width=2.0, height=1.0).move_to([2,0,0]).set_fill(GRAY, opacity=0.2).scale(0.8)
+        # emptytext2 = Text("?").move_to([2,0,0])
         
-        first = VGroup()
-        second = VGroup()
-        first.add(rect1, col1)
-        second.add(rect2, col2)
-        self.add(rect1, col1, col2, rect2)
-        self.play(rect1.animate.flip(), Transform(col1, emptytext1), rect2.animate.flip(), Transform(col2, emptytext2))
-        # self.play(rect.animate.shift(RIGHT*2), rect2.animate.shift(LEFT*2), col.animate.shift(RIGHT*2), col2.animate.shift(LEFT*2))
-        self.play(first.animate.shift(RIGHT*2), second.animate.shift(LEFT*2))
-        self.wait(2)
+        # first = VGroup()
+        # second = VGroup()
+        # first.add(rect1, col1)
+        # second.add(rect2, col2)
+        # self.add(rect1, col1, col2, rect2)
+        # self.play(rect1.animate.flip(), Transform(col1, emptytext1), rect2.animate.flip(), Transform(col2, emptytext2))
+        # # self.play(rect.animate.shift(RIGHT*2), rect2.animate.shift(LEFT*2), col.animate.shift(RIGHT*2), col2.animate.shift(LEFT*2))
+        # self.play(first.animate.shift(RIGHT*2), second.animate.shift(LEFT*2))
+        # self.wait(2)
 
         # col = Text("Hello", color=RED).move_to([0,0,0]).scale(0.8)
         # circle = Circle().set_fill(RED)
@@ -29,33 +46,49 @@ class Indications(Scene):
         # self.wait(1)
         
         #########$$$$$$$$$
-        # coordinates  = [[-1,2,0],  [0,2,0], [1,2,0], [-1,1,0], [0, 1, 0], [1, 1, 0], [-1, 0, 0],  [0,0,0] , [1, 0 , 0], [-1,-1,0], [0,-1,0]]
-        # colors  = [RED, RED, RED, RED, RED, RED, BLUE, BLUE, BLUE, BLUE, BLUE]
-        # word = ["Hello", "Hello", "Hello", "Hello", "Hello", "Hello", "World", "World", "World", "World", "World"]
-        # box_of_circles = VGroup()
+        coordinates  = [[-1,2,0],  [0,2,0], [1,2,0], [-1,1,0], [0, 1, 0], [1, 1, 0], [-1, 0, 0],  [0,0,0] , [1, 0 , 0], [-1,-1,0], [0,-1,0]]
+        colors  = [RED, RED, RED, RED, RED, RED, BLUE, BLUE, BLUE, BLUE, BLUE]
+        word = ["Hello", "Hello", "Hello", "Hello", "Hello", "Hello", "World", "World", "World", "World", "World"]
+        positions = [0,1,2,3,4,5,6,7,8,9,10]
+        box_of_wt = VGroup()
+        box_of_words = VGroup()
+        box_of_tiles = VGroup()
     
-        # index = 0
-        # box = Rectangle(width=3, height=4).move_to([0,0.5,0])
-        # text1 = MarkupText(f'6 identical <span fgcolor="{RED}">Hello</span>tiles and 5 identical <span fgcolor="{BLUE}">World</span> tiles').shift(UP).shift(UP).shift(UP)
-        # box_of_circles.add(box)
-        # box_of_circles.add(text1)
-        # box_of_circles = VGroup()
-       
-        # self.play(Create(box))
-        # self.play(Write(text1))
+        index = 0
+        box = Rectangle(width=3, height=4).move_to([0,0.5,0])
+        text1 = MarkupText(f'6 identical <span fgcolor="{RED}">Hello</span>tiles and 5 identical <span fgcolor="{BLUE}">World</span> tiles').shift(UP).shift(UP).shift(UP)
+        self.play(Create(box))
+        self.play(Write(text1))
 
-        # words = [Text(wor, color=col).scale(0.3).move_to(cor) for cor, col, wor in zip(coordinates, colors, word)]
-        # rectangles = [Rectangle(color=col).set_fill(col, opacity=0.2).scale(0.2).move_to(cor) for cor, col in zip(coordinates, colors)]
+        words = [Text(wor, color=col).scale(0.3).move_to(cor) for cor, col, wor in zip(coordinates, colors, word)]
+        questionmarks = [Text("?").scale(0.3).move_to(cor) for cor in coordinates]
+        rectangles = [Rectangle().set_fill(GRAY, opacity=0.2).scale(0.2).move_to(cor) for cor, col in zip(coordinates, colors)]
        
-        # for b in rectangles: 
-        #     box_of_circles.add(b)
-        # for b in words:
-        #     box_of_circles.add(b)
-        # self.play(*[Create(b) for b in box_of_circles], run_time =1)
-        # self.play(*[b.animate.flip() for b in box_of_circles])
-        # self.wait(5)
+        for w,r in zip(words,rectangles): 
+            k = VGroup()
+            k.add(r,w)
+            box_of_wt.add(k)
+            box_of_words.add(w)
+            box_of_tiles.add(r)
+        
+
+        self.play(*[Create(b) for b in box_of_tiles], run_time = 2)
+        self.add(*[b for b in box_of_words])
+
+        self.play(*[b.animate.flip() for b in box_of_tiles], *[Transform(a, b) for a, b in zip(box_of_words, questionmarks)])
+        
+        # random.shuffle(positions)
+        positions = random_derangement(11)
+        self.play(*[b.animate.move_to(coordinates[i]) for b, i in zip(box_of_wt, positions) ])
+       
+        self.wait(5)
         #####$$$$$$$$$$$$$$$$$$$$
 
+
+        # self.play(*[Create(b) for b in box_of_circles], run_time =1)
+        # self.play(*[b.animate.flip() for b in box_of_circles])
+        # self.play(*)
+        # self.wait(5)
         # Possible_outcomes = [[0,0,0], [0,0,1], [0,1,0], [0,1,1], [1,0,0], [1,0,1], [1,1,0], [1,1,1]]
 
         # y = 2.8

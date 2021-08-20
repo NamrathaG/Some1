@@ -4,22 +4,17 @@ class Indications(Scene):
     def construct(self):
 
         
-        col1 = Text("Hello", color=RED).move_to([0,0,0]).scale(0.8)
-        emptytext1 = Text("?")
-        rect1 = Rectangle(width=2.0, height=1.0).move_to([0,0,0]).set_fill(GRAY, opacity=0.2).scale(0.8)
-        col2 = Text("World", color=BLUE).move_to([2,0,0]).scale(0.8)
-        rect2 = Rectangle(width=2.0, height=1.0).move_to([2,0,0]).set_fill(GRAY, opacity=0.2).scale(0.8)
-        emptytext2 = Text("?").move_to([2,0,0])
+        # col = Text("Hello", color=RED).move_to([0,0,0]).scale(0.8)
+        # emptytext1 = Text("?")
+        # rect = Rectangle(width=2.0, height=1.0).move_to([0,0,0]).set_fill(GRAY, opacity=0.2).scale(0.8)
+        # col2 = Text("World", color=BLUE).move_to([2,0,0]).scale(0.8)
+        # rect2 = Rectangle(width=2.0, height=1.0).move_to([2,0,0]).set_fill(GRAY, opacity=0.2).scale(0.8)
+        # emptytext2 = Text("?").move_to([2,0,0])
         
-        first = VGroup()
-        second = VGroup()
-        first.add(rect1, col1)
-        second.add(rect2, col2)
-        self.add(rect1, col1, col2, rect2)
-        self.play(rect1.animate.flip(), Transform(col1, emptytext1), rect2.animate.flip(), Transform(col2, emptytext2))
+        # self.add(rect, col, col2, rect2)
+        # self.play(rect.animate.flip(), Transform(col, emptytext1), rect2.animate.flip(), Transform(col2, emptytext2))
         # self.play(rect.animate.shift(RIGHT*2), rect2.animate.shift(LEFT*2), col.animate.shift(RIGHT*2), col2.animate.shift(LEFT*2))
-        self.play(first.animate.shift(RIGHT*2), second.animate.shift(LEFT*2))
-        self.wait(2)
+        # self.wait(2)
 
         # col = Text("Hello", color=RED).move_to([0,0,0]).scale(0.8)
         # circle = Circle().set_fill(RED)

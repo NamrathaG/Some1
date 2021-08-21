@@ -484,10 +484,14 @@ class MobjectExample(Scene):
         
 
         
-        square1 = Rectangle(width=1.23, height=1).move_to([-5.68,-2.3, 0]).set_stroke(width=0)
-        square2 = Rectangle(width=1.1, height=1).move_to([4.38, -2.3, 0]).set_stroke(width=0)
+        square1 = Rectangle(width=1, height=1).move_to([-5.68,-2.3, 0]).set_stroke(width=0)
+        square2 = Rectangle(width=1, height=1).move_to([4.38, -2.3, 0]).set_stroke(width=0)
 
        
+        
+        # square1 = Rectangle(width=1.23, height=1).move_to([-5.68,-2.3, 0]).set_stroke(width=0)
+        # square2 = Rectangle(width=1.1, height=1).move_to([4.38, -2.3, 0]).set_stroke(width=0)
+
 
         # square1 = Dot().move_to([-5.7,-2.3, 0])
         # square2 = Dot().move_to([4.4, -2.3, 0])
@@ -496,9 +500,9 @@ class MobjectExample(Scene):
         self.add(square1)
         self.add(square2)
 
-        self.play(Circumscribe(square1), time_width = 2)
+        self.play(Circumscribe(square1, Circle), time_width = 2)
         self.wait(1)
-        self.play(Circumscribe(square2), time_width = 2)
+        self.play(Circumscribe(square2, Circle), time_width = 2)
         # self.play(Circumscribe(square1, Circle))
         # self.play(Circumscribe(square1, fade_out=True))
         # self.play(Circumscribe(square1, time_width=2))

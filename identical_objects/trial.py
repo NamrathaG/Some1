@@ -20,6 +20,87 @@ class Indications(Scene):
 
     def construct(self):
 
+
+
+        # lbl = Tex(r"Circum-\\scribe").scale(2)
+
+        lbl = Square().set_color(BLACK)
+        self.add(lbl)
+        self.play(Circumscribe(lbl))
+        self.play(Circumscribe(lbl, Circle))
+        self.play(Circumscribe(lbl, fade_out=True))
+        self.play(Circumscribe(lbl, time_width=2))
+        self.play(Circumscribe(lbl, Circle, True))
+
+
+        grid = NumberPlane()
+        grid = NumberPlane()
+        grid_title = Tex("This is a grid")
+        grid_title.scale(1.5)
+        grid_title.move_to(transform_title)
+
+        # text = Text("Colors").scale(2)
+        # for letter in text:
+        #     letter.set_color(random_bright_color())
+
+
+        # tex = Tex("Wiggle").scale(3)
+        # # self.play(Wiggle(tex), Indicate(tex))
+        # # self.wait()
+
+        # self.play(ApplyWave(
+        #     tex,
+        #     direction=RIGHT,
+        #     time_width=0.5,
+        #     amplitude=0.3
+        # ))
+        # dcol= []
+        # text = Text("distinct").scale(2)
+        # for letter in text:
+        #     dcol.append(random_bright_color())
+
+
+        # m1 = MarkupText(f'6 <b> <span fgcolor= "{dcol[0]}">d</span><span fgcolor= "{dcol[1]}">i</span><span fgcolor= "{dcol[2]}">s</span><span fgcolor= "{dcol[3]}">t</span><span fgcolor= "{dcol[4]}">i</span><span fgcolor= "{dcol[5]}">n</span><span fgcolor= "{dcol[6]}">c</span><span fgcolor= "{dcol[7]}">t</span></b> <span fgcolor="{RED}">Hello</span> tiles')
+        # m2 = MarkupText(f'5 <b>distinct</b> <span fgcolor="{BLUE}">World</span> tiles').next_to(m1, DOWN)
+
+        # self.play(Write(m1))
+        # self.play(Write(m2))
+        # self.play(Flash(m1))
+        
+        # m1 = MarkupText(f'Identical Objects Rule').scale(1).shift(UP)
+        # m2 = MarkupText(f'In probability problems, there are no collections of identical objects;').next_to(m1, DOWN).scale(0.7)
+        # m3 = MarkupText(f'all objects are <span fgcolor="{YELLOW}">distinguishable</span>').next_to(m2, DOWN).scale(0.7)
+        # # paragraph = Paragraph(MarkupText(f'6 <b>identical</b> Hello tiles'), '5 identical World tiles')
+
+        # self.play(Write(m1))
+        # self.play(Write(m2))
+        # self.play(Write(m3))
+
+        # m3 = MarkupText(f'Tile addresses')
+
+        # m4 = MarkupText(f'11 <b>distinct</b> tiles')
+
+        self.wait(3)
+        # w1 = Text("Hello", color=RED).scale(0.7)
+        # t1 = Rectangle(width=2.0, height=1.0).set_fill(GRAY, opacity=0.2).scale(0.6)
+        # w2 = Text("World", color=BLUE).scale(0.7)
+        # t2 = Rectangle(width=2.0, height=1.0).set_fill(GRAY, opacity=0.2).scale(0.6)
+
+
+        # vg1 = VGroup(col1, rect1)
+        # vg2 = VGroup(col2, rect2)
+
+        # text1 = MathTex(r"P(")
+        # text2 = MathTex(r")")
+
+        # self.add(text1, vg1.next_to(text1, RIGHT), vg2.next_to(vg1, RIGHT), text2.next_to(vg2, RIGHT))
+
+        
+        # # self.play(Write(text1), Create(vg1), Create(vg2), Write(text2))
+
+        # self.wait(4)
+    
+        
         
         # col1 = Text("Hello", color=RED).move_to([0,0,0]).scale(0.8)
         # emptytext1 = Text("?")
@@ -46,42 +127,42 @@ class Indications(Scene):
         # self.wait(1)
         
         #########$$$$$$$$$
-        coordinates  = [[-1,2,0],  [0,2,0], [1,2,0], [-1,1,0], [0, 1, 0], [1, 1, 0], [-1, 0, 0],  [0,0,0] , [1, 0 , 0], [-1,-1,0], [0,-1,0]]
-        colors  = [RED, RED, RED, RED, RED, RED, BLUE, BLUE, BLUE, BLUE, BLUE]
-        word = ["Hello", "Hello", "Hello", "Hello", "Hello", "Hello", "World", "World", "World", "World", "World"]
-        positions = [0,1,2,3,4,5,6,7,8,9,10]
-        box_of_wt = VGroup()
-        box_of_words = VGroup()
-        box_of_tiles = VGroup()
+        # coordinates  = [[-1,2,0],  [0,2,0], [1,2,0], [-1,1,0], [0, 1, 0], [1, 1, 0], [-1, 0, 0],  [0,0,0] , [1, 0 , 0], [-1,-1,0], [0,-1,0]]
+        # colors  = [RED, RED, RED, RED, RED, RED, BLUE, BLUE, BLUE, BLUE, BLUE]
+        # word = ["Hello", "Hello", "Hello", "Hello", "Hello", "Hello", "World", "World", "World", "World", "World"]
+        # positions = [0,1,2,3,4,5,6,7,8,9,10]
+        # box_of_wt = VGroup()
+        # box_of_words = VGroup()
+        # box_of_tiles = VGroup()
     
-        index = 0
-        box = Rectangle(width=3, height=4).move_to([0,0.5,0])
-        text1 = MarkupText(f'6 identical <span fgcolor="{RED}">Hello</span>tiles and 5 identical <span fgcolor="{BLUE}">World</span> tiles').shift(UP).shift(UP).shift(UP)
-        self.play(Create(box))
-        self.play(Write(text1))
+        # index = 0
+        # box = Rectangle(width=3, height=4).move_to([0,0.5,0])
+        # text1 = MarkupText(f'6 identical <span fgcolor="{RED}">Hello</span>tiles and 5 identical <span fgcolor="{BLUE}">World</span> tiles').shift(UP).shift(UP).shift(UP)
+        # self.play(Create(box))
+        # self.play(Write(text1))
 
-        words = [Text(wor, color=col).scale(0.3).move_to(cor) for cor, col, wor in zip(coordinates, colors, word)]
-        questionmarks = [Text("?").scale(0.3).move_to(cor) for cor in coordinates]
-        rectangles = [Rectangle().set_fill(GRAY, opacity=0.2).scale(0.2).move_to(cor) for cor, col in zip(coordinates, colors)]
+        # words = [Text(wor, color=col).scale(0.3).move_to(cor) for cor, col, wor in zip(coordinates, colors, word)]
+        # questionmarks = [Text("?").scale(0.3).move_to(cor) for cor in coordinates]
+        # rectangles = [Rectangle().set_fill(GRAY, opacity=0.2).scale(0.2).move_to(cor) for cor, col in zip(coordinates, colors)]
        
-        for w,r in zip(words,rectangles): 
-            k = VGroup()
-            k.add(r,w)
-            box_of_wt.add(k)
-            box_of_words.add(w)
-            box_of_tiles.add(r)
+        # for w,r in zip(words,rectangles): 
+        #     k = VGroup()
+        #     k.add(r,w)
+        #     box_of_wt.add(k)
+        #     box_of_words.add(w)
+        #     box_of_tiles.add(r)
         
 
-        self.play(*[Create(b) for b in box_of_tiles], run_time = 2)
-        self.add(*[b for b in box_of_words])
+        # self.play(*[Create(b) for b in box_of_tiles], run_time = 2)
+        # self.add(*[b for b in box_of_words])
 
-        self.play(*[b.animate.flip() for b in box_of_tiles], *[Transform(a, b) for a, b in zip(box_of_words, questionmarks)])
+        # self.play(*[b.animate.flip() for b in box_of_tiles], *[Transform(a, b) for a, b in zip(box_of_words, questionmarks)])
         
-        # random.shuffle(positions)
-        positions = random_derangement(11)
-        self.play(*[b.animate.move_to(coordinates[i]) for b, i in zip(box_of_wt, positions) ])
+        # # random.shuffle(positions)
+        # positions = random_derangement(11)
+        # self.play(*[b.animate.move_to(coordinates[i]) for b, i in zip(box_of_wt, positions) ])
        
-        self.wait(5)
+        # self.wait(5)
         #####$$$$$$$$$$$$$$$$$$$$
 
 

@@ -187,15 +187,17 @@ class MobjectExample(Scene):
         """
         Okay so the devil is in the details. 
         """
-        t1 = MathTex(r"\text{Probability} = \frac{\text{number of favorable cases}}{\text{total number of cases}}")   
-        t2 = MarkupText(f'Each case must be <span fgcolor="{YELLOW}">equally likely</span>').scale(0.5)
+        t1 = MathTex(r"\text{Probability} = \frac{\text{number of favorable cases}}{\text{total number of cases}}^*")   
+        t2 = MarkupText(f'<sup>*</sup> Each case must be <span fgcolor="{YELLOW}">equally likely</span>').scale(0.5)
 
-        asterisk1 = Text("*").move_to([0,0,0])
+        
+        # asterisk1 = Text("*").move_to([4.6,0.7,0])
         # asterisk2 = Text("*").move_to([])
        
         self.play(Write(t1), run_time = 3)
-        self.play(Write(t2.next_to(t1, DOWN)), run_time = 4)
-        self.play(asterisk1)
+        self.wait(1)
+        self.play(Write(t2.next_to(t1, DOWN, buff=0.5)), run_time = 3)
+        # self.play(Write(asterisk1))
         self.wait(2)
 
         self.clear()

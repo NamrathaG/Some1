@@ -166,10 +166,10 @@ class MobjectExample(Scene):
         t3 = MathTex(r"= \frac{1}{4}").next_to(t2, DOWN).align_to(t2,LEFT)   
         cross1 = Cross(t3)    
 
-        self.play(Write(t1), run_time = 3)
-        self.play(Write(t2), run_time = 3)
-        self.play(Write(t3), run_time = 3)
-        self.play(Create(cross1), run_time = 2)
+        self.play(Write(t1))
+        self.play(Write(t2))
+        self.play(Write(t3))
+        self.play(Create(cross1))
         self.wait(5)
 
         # """
@@ -188,10 +188,14 @@ class MobjectExample(Scene):
         Okay so the devil is in the details. 
         """
         t1 = MathTex(r"\text{Probability} = \frac{\text{number of favorable cases}}{\text{total number of cases}}")   
-        t2 = MarkupText(f'Implicit in this definition is the assumption that each case is <span fgcolor="{YELLOW}">equally likely</span>').scale(0.5)
+        t2 = MarkupText(f'Each case must be <span fgcolor="{YELLOW}">equally likely</span>').scale(0.5)
+
+        asterisk1 = Text("*").move_to([0,0,0])
+        # asterisk2 = Text("*").move_to([])
        
         self.play(Write(t1), run_time = 3)
         self.play(Write(t2.next_to(t1, DOWN)), run_time = 4)
+        self.play(asterisk1)
         self.wait(2)
 
         self.clear()
@@ -251,6 +255,8 @@ class MobjectExample(Scene):
         box_of_integers2 = Group()
         box = Rectangle(width=3, height=4).move_to([0,0.5,0])
         self.play(Create(box))
+        tileloctext = Text("Tile locations").next_to(box, DOWN, buff = 0.5).scale(0.7)
+        self.play(Write(tileloctext))
         count = 1
         for c in coordinates:
            integer =  Integer(number=count).move_to(c).scale(0.75)
@@ -303,7 +309,7 @@ class MobjectExample(Scene):
 
         for a in box_of_integers2:
              self.remove(a)
-        self.remove(box)
+        self.remove(box, tileloctext)
 
 
         p1 = [3,3.5,0]
@@ -327,7 +333,7 @@ class MobjectExample(Scene):
         choices2 = Integer(10).next_to(pick2, UP)
         self.play(Create(pick1), Create(pick2))
         self.play(Write(pick1_text), Write(pick2_text))
-        times1 = MathTex(r"\times").next_to(choices1 , buff=0.4)
+        times1 = MathTex(r"\times").move_to([-1.75, 0.4,0])
         self.play(Create(choices1), run_time=1)
         self.wait(1)
         self.play(Create(choices2), run_time=1)
@@ -359,7 +365,7 @@ class MobjectExample(Scene):
         self.wait(1)
         self.play(Create(choices2), run_time=1)
         self.wait(1)
-        self.play(Write(MathTex(r"\times").next_to(choices1 , buff=0.5)))
+        self.play(Write(MathTex(r"\times").move_to([-1.75, 0.4 ,0])))
         
         self.clear()
 
@@ -374,181 +380,182 @@ class MobjectExample(Scene):
         self.clear()
 
 
-        # titlescale = 0.5
-        # ob = -5
-        # coordinates1  = [[ob-1, 2, 0],  [ob+0, 2, 0], [ob+1, 2, 0], [ob-1, 1, 0], [ob+0, 1, 0], [ob+1, 1, 0], [ob-1, 0, 0], [ob+0, 0, 0] , [ob+1, 0 , 0], [ob-1, -1, 0], [ob+0, -1, 0]]
-        # colors  = [RED, RED, RED, RED, RED, RED, BLUE, BLUE, BLUE, BLUE, BLUE]
-        # word = ["Hello", "Hello", "Hello", "Hello", "Hello", "Hello", "World", "World", "World", "World", "World"]
-        # indices = [0,1,2,3,4,5,6,7,8,9,10]
-        # Possible_outcomes = [[0,0], [0,1], [1,0], [1,1]]
-        # box_of_wt = VGroup()
-        # box_of_words = VGroup()
-        # box_of_tiles = VGroup()
+        titlescale = 0.5
+        ob = -5
+        coordinates1  = [[ob-1, 2, 0],  [ob+0, 2, 0], [ob+1, 2, 0], [ob-1, 1, 0], [ob+0, 1, 0], [ob+1, 1, 0], [ob-1, 0, 0], [ob+0, 0, 0] , [ob+1, 0 , 0], [ob-1, -1, 0], [ob+0, -1, 0]]
+        colors  = [RED, RED, RED, RED, RED, RED, BLUE, BLUE, BLUE, BLUE, BLUE]
+        word = ["Hello", "Hello", "Hello", "Hello", "Hello", "Hello", "World", "World", "World", "World", "World"]
+        indices = [0,1,2,3,4,5,6,7,8,9,10]
+        Possible_outcomes = [[0,0], [0,1], [1,0], [1,1]]
+        box_of_wt = VGroup()
+        box_of_words = VGroup()
+        box_of_tiles = VGroup()
     
-        # box = Rectangle(width=3, height=4).move_to([ob+0,0.5,0])
-        # self.play(Create(box))
+        box = Rectangle(width=3, height=4).move_to([ob+0,0.5,0])
+        self.play(Create(box))
 
-        # words = [Text(wor, color=col).scale(0.3).move_to(cor) for cor, col, wor in zip(coordinates1, colors, word)]
-        # tiles = [Rectangle().set_fill(GRAY, opacity=0.2).scale(0.2).move_to(cor).set_stroke(width=1) for cor, col in zip(coordinates1, colors)]
+        words = [Text(wor, color=col).scale(0.3).move_to(cor) for cor, col, wor in zip(coordinates1, colors, word)]
+        tiles = [Rectangle().set_fill(GRAY, opacity=0.2).scale(0.2).move_to(cor).set_stroke(width=1) for cor, col in zip(coordinates1, colors)]
        
-        # for w,r in zip(words,tiles): 
-        #     k = VGroup()
-        #     k.add(r,w)
-        #     box_of_wt.add(k)
-        #     box_of_words.add(w)
-        #     box_of_tiles.add(r)
+        for w,r in zip(words,tiles): 
+            k = VGroup()
+            k.add(r,w)
+            box_of_wt.add(k)
+            box_of_words.add(w)
+            box_of_tiles.add(r)
         
 
-        # self.add(*[b for b in box_of_tiles])
-        # self.add(*[b for b in box_of_words])
+        self.play(*[Create(b) for b in box_of_tiles], *[Write(b) for b in box_of_words])
 
 
-        # m1 = MarkupText(f'6 <b>identical</b> <span fgcolor="{RED}">Hello</span> tiles').next_to(box, DOWN).scale(titlescale)
-        # m2 = MarkupText(f'5 <b>identical</b> <span fgcolor="{BLUE}">World</span> tiles').next_to(m1, DOWN).scale(titlescale)
+        m1 = MarkupText(f'6 <b>identical</b> <span fgcolor="{RED}">Hello</span> tiles').next_to(box, DOWN).scale(titlescale)
+        m2 = MarkupText(f'5 <b>identical</b> <span fgcolor="{BLUE}">World</span> tiles').next_to(m1, DOWN).scale(titlescale)
 
-        # self.play(Write(m1))
-        # self.play(Write(m2))
+        self.play(Write(m1))
+        self.play(Write(m2))
 
      
-        # self.wait(3)
+        self.wait(3)
 
         # """
         # Need to play an arrow over here
         # """
 
-        # plus1 = Text("+", color=GOLD).move_to([-2.5,0.5,0])
-        # self.play(Write(plus1))
+        plus1 = Text("+", color=GOLD).move_to([-2.5,0.5,0]).scale(1.7)
+        self.play(Write(plus1))
         
 
 
-        # ob = 0
-        # coordinates2  = [[ob-1, 2, 0],  [ob+0, 2, 0], [ob+1, 2, 0], [ob-1, 1, 0], [ob+0, 1, 0], [ob+1, 1, 0], [ob-1, 0, 0], [ob+0, 0, 0] , [ob+1, 0 , 0], [ob-1, -1, 0], [ob+0, -1, 0]]
+        ob = 0
+        coordinates2  = [[ob-1, 2, 0],  [ob+0, 2, 0], [ob+1, 2, 0], [ob-1, 1, 0], [ob+0, 1, 0], [ob+1, 1, 0], [ob-1, 0, 0], [ob+0, 0, 0] , [ob+1, 0 , 0], [ob-1, -1, 0], [ob+0, -1, 0]]
 
-        # box_of_circles2 = Group()
-        # box_of_integers2 = Group()
-        # box = Rectangle(width=3, height=4).move_to([ob+0,0.5,0])
-        # self.play(Create(box))
-        # count = 1
-        # for c in coordinates2:
-        #    integer =  Integer(number=count).move_to(c).scale(0.75)
-        #    circle = Circle().set_color(WHITE).scale(0.2).set_style(fill_opacity = 0,stroke_width=1).move_to(c)
-        #    box_of_integers2.add(integer)
-        #    box_of_circles2.add(circle)
-        #    self.add(circle, integer)
-        #    count = count + 1 
+        box_of_circles2 = Group()
+        box_of_integers2 = Group()
+        box = Rectangle(width=3, height=4).move_to([ob+0,0.5,0])
+        self.play(Create(box))
+        count = 1
+        for c in coordinates2:
+           integer =  Integer(number=count).move_to(c).scale(0.75)
+           circle = Circle().set_color(WHITE).scale(0.2).set_style(fill_opacity = 0,stroke_width=1).move_to(c)
+           box_of_integers2.add(integer)
+           box_of_circles2.add(circle)
+           count = count + 1 
+        
+        self.play(*[Create(b) for b in box_of_circles2], *[Write(b) for b in box_of_integers2])
         
     
-        # m1 = MarkupText(f'Tile addresses').next_to(box, DOWN).scale(titlescale)
+        m1 = MarkupText(f'Tile locations').next_to(box, DOWN).scale(titlescale)
 
-        # self.play(Write(m1))
+        self.play(Write(m1))
 
-        # """
-        # Need to play an arrow over here
-        # """
+        """
+        Need to play an arrow over here
+        """
 
-        # arrow_1 = Arrow(start=[1.5,0.5,0], end=[3.5,0.5,0], color=GOLD)
-        # self.play(Create(arrow_1) , run_time = 2)
+        arrow_1 = Arrow(start=[1.5,0.5,0], end=[3.5,0.5,0], color=GOLD)
+        self.play(Create(arrow_1) , run_time = 2)
         
 
 
      
 
        
-        # ob = 5
-        # coordinates1  = [[ob-1, 2, 0],  [ob+0, 2, 0], [ob+1, 2, 0], [ob-1, 1, 0], [ob+0, 1, 0], [ob+1, 1, 0], [ob-1, 0, 0], [ob+0, 0, 0] , [ob+1, 0 , 0], [ob-1, -1, 0], [ob+0, -1, 0]]
-        # colors  = [RED, RED, RED, RED, RED, RED, BLUE, BLUE, BLUE, BLUE, BLUE]
-        # word = ["Hello", "Hello", "Hello", "Hello", "Hello", "Hello", "World", "World", "World", "World", "World"]
-        # indices = [0,1,2,3,4,5,6,7,8,9,10]
-        # Possible_outcomes = [[0,0], [0,1], [1,0], [1,1]]
-        # box_of_wt = VGroup()
-        # box_of_words = VGroup()
-        # box_of_tiles = VGroup()
+        ob = 5
+        coordinates1  = [[ob-1, 2, 0],  [ob+0, 2, 0], [ob+1, 2, 0], [ob-1, 1, 0], [ob+0, 1, 0], [ob+1, 1, 0], [ob-1, 0, 0], [ob+0, 0, 0] , [ob+1, 0 , 0], [ob-1, -1, 0], [ob+0, -1, 0]]
+        colors  = [RED, RED, RED, RED, RED, RED, BLUE, BLUE, BLUE, BLUE, BLUE]
+        word = ["Hello", "Hello", "Hello", "Hello", "Hello", "Hello", "World", "World", "World", "World", "World"]
+        indices = [0,1,2,3,4,5,6,7,8,9,10]
+        Possible_outcomes = [[0,0], [0,1], [1,0], [1,1]]
+        box_of_wt = VGroup()
+        box_of_words = VGroup()
+        box_of_tiles = VGroup()
     
-        # box = Rectangle(width=3, height=4).move_to([ob+0,0.5,0])
-        # self.play(Create(box))
+        box = Rectangle(width=3, height=4).move_to([ob+0,0.5,0])
+        self.play(Create(box))
 
-        # words = [Text(wor, color=col).scale(0.3).move_to(cor) for cor, col, wor in zip(coordinates1, colors, word)]
-        # tiles = [Rectangle().set_fill(GRAY, opacity=0.2).scale(0.2).move_to(cor).set_stroke(width=1) for cor, col in zip(coordinates1, colors)]
+        words = [Text(wor, color=col).scale(0.3).move_to(cor) for cor, col, wor in zip(coordinates1, colors, word)]
+        tiles = [Rectangle().set_fill(GRAY, opacity=0.2).scale(0.2).move_to(cor).set_stroke(width=1) for cor, col in zip(coordinates1, colors)]
        
-        # for w,r in zip(words,tiles): 
-        #     k = VGroup()
-        #     k.add(r,w)
-        #     box_of_wt.add(k)
-        #     box_of_words.add(w)
-        #     box_of_tiles.add(r)
+        for w,r in zip(words,tiles): 
+            k = VGroup()
+            k.add(r,w)
+            box_of_wt.add(k)
+            box_of_words.add(w)
+            box_of_tiles.add(r)
         
 
-        # self.add(*[b for b in box_of_tiles])
-        # self.add(*[b for b in box_of_words])
+        self.play(*[Create(b) for b in box_of_tiles], *[Create(b) for b in box_of_words])
 
-        # icoord = []
+        icoord = []
      
         
-        # leftshift = 0.3
-        # upshift = 0.1
+        leftshift = 0.3
+        upshift = 0.1
 
-        # for c in coordinates1:
-        #     icoord.append([c[0] - leftshift, c[1]+ upshift, 0])
+        for c in coordinates1:
+            icoord.append([c[0] - leftshift, c[1]+ upshift, 0])
             
 
-        # box_of_circles2 = Group()
-        # box_of_integers2 = Group()
-        # count = 1
-        # for c in icoord:
-        #    integer =  Integer(number=count).move_to(c).scale(0.3)
-        #    circle = Circle().set_color(WHITE).scale(0.1).set_style(fill_opacity = 0,stroke_width=1).move_to(c)
-        #    box_of_integers2.add(integer)
-        #    box_of_circles2.add(circle)
-        #    self.add(circle, integer)
-        #    count = count + 1
-   
-        # m1 = MarkupText(f'6 <b>distinct</b> <span fgcolor="{RED}">Hello</span> tiles').next_to(box, DOWN).scale(titlescale)
-        # m2 = MarkupText(f'5 <b>distinct</b> <span fgcolor="{BLUE}">World</span> tiles').next_to(m1, DOWN).scale(titlescale)
+        box_of_circles2 = Group()
+        box_of_integers2 = Group()
+        count = 1
+        for c in icoord:
+           integer =  Integer(number=count).move_to(c).scale(0.3)
+           circle = Circle().set_color(WHITE).scale(0.1).set_style(fill_opacity = 0,stroke_width=1).move_to(c)
+           box_of_integers2.add(integer)
+           box_of_circles2.add(circle)
+           count = count + 1
 
-        # self.play(Write(m1))
-        # self.play(Write(m2))
+        self.play(*[Create(b) for b in box_of_circles2], *[Write(b) for b in box_of_integers2])
+            
+    
+        m1 = MarkupText(f'6 <b>distinct</b> <span fgcolor="{RED}">Hello</span> tiles').next_to(box, DOWN).scale(titlescale)
+        m2 = MarkupText(f'5 <b>distinct</b> <span fgcolor="{BLUE}">World</span> tiles').next_to(m1, DOWN).scale(titlescale)
+
+        self.play(Write(m1))
+        self.play(Write(m2))
 
     
         
 
         
-        # square1 = Rectangle(width=1, height=1).move_to([-5.68,-2.3, 0]).set_stroke(width=0)
-        # square2 = Rectangle(width=1, height=1).move_to([4.38, -2.3, 0]).set_stroke(width=0)
+        square1 = Rectangle(width=1, height=1).move_to([-5.68,-2.3, 0]).set_stroke(width=0)
+        square2 = Rectangle(width=1, height=1).move_to([4.38, -2.3, 0]).set_stroke(width=0)
 
        
         
-        # # square1 = Rectangle(width=1.23, height=1).move_to([-5.68,-2.3, 0]).set_stroke(width=0)
-        # # square2 = Rectangle(width=1.1, height=1).move_to([4.38, -2.3, 0]).set_stroke(width=0)
+        # square1 = Rectangle(width=1.23, height=1).move_to([-5.68,-2.3, 0]).set_stroke(width=0)
+        # square2 = Rectangle(width=1.1, height=1).move_to([4.38, -2.3, 0]).set_stroke(width=0)
 
 
-        # # square1 = Dot().move_to([-5.7,-2.3, 0])
-        # # square2 = Dot().move_to([4.4, -2.3, 0])
+        # square1 = Dot().move_to([-5.7,-2.3, 0])
+        # square2 = Dot().move_to([4.4, -2.3, 0])
 
 
-        # self.add(square1)
-        # self.add(square2)
+        self.add(square1)
+        self.add(square2)
 
-        # self.play(Circumscribe(square1, Circle), time_width = 2)
-        # self.wait(1)
-        # self.play(Circumscribe(square2, Circle), time_width = 2)
-        # # self.play(Circumscribe(square1, Circle))
-        # # self.play(Circumscribe(square1, fade_out=True))
-        # # self.play(Circumscribe(square1, time_width=2))
-        # # self.play(Circumscribe(square1, Circle, True))
+        self.play(Circumscribe(square1, Circle), time_width = 2)
+        self.wait(1)
+        self.play(Circumscribe(square2, Circle), time_width = 2)
+        # self.play(Circumscribe(square1, Circle))
+        # self.play(Circumscribe(square1, fade_out=True))
+        # self.play(Circumscribe(square1, time_width=2))
+        # self.play(Circumscribe(square1, Circle, True))
 
-        # self.wait(2)
-
-
-        # self.clear()
+        self.wait(2)
 
 
-        # m1 = MarkupText(f'Identical Objects Rule').scale(1).shift(UP)
-        # m2 = MarkupText(f'In probability problems, there are no collections of identical objects;').next_to(m1, DOWN).scale(0.7)
-        # m3 = MarkupText(f'all objects are <span fgcolor="{YELLOW}">distinguishable</span>').next_to(m2, DOWN).scale(0.7)
-        # # paragraph = Paragraph(MarkupText(f'6 <b>identical</b> Hello tiles'), '5 identical World tiles')
+        self.clear()
 
-        # self.play(Write(m1))
-        # self.play(Write(m2))
-        # self.play(Write(m3))
 
-        # self.wait(2)
+        m1 = MarkupText(f'Identical Objects Rule').scale(1).shift(UP)
+        m2 = MarkupText(f'In probability problems, there are no collections of identical objects;').next_to(m1, DOWN).scale(0.7)
+        m3 = MarkupText(f'all objects are <span fgcolor="{YELLOW}">distinguishable</span>').next_to(m2, DOWN).scale(0.7)
+        # paragraph = Paragraph(MarkupText(f'6 <b>identical</b> Hello tiles'), '5 identical World tiles')
+
+        self.play(Write(m1))
+        self.play(Write(m2))
+        self.play(Write(m3))
+
+        self.wait(2)
